@@ -16,31 +16,25 @@ public class SehirController {
     private SehirRepository sehirRepository;
 
     @GetMapping("/sehir/{id}")
-    public Sehir getSehir(@PathVariable("id") long id)
-    {
+    public Sehir getSehir(@PathVariable("id") long id) {
         Sehir sehir = null;
         Optional<Sehir> sehirDB = sehirRepository.findById(id);
 
-        if(sehirDB.isPresent())
-        {
+        if (sehirDB.isPresent()) {
             sehir = sehirDB.get();
             return sehir;
-        }
-        else
-        {
+        } else {
             throw new SehirNotFoundException(id + "nolu Sehir bulunamadı!");
         }
     }
 
     @GetMapping("/sehir")
-    public List<Sehir> getTumSehirler()
-    {
+    public List<Sehir> getTumSehirler() {
         return sehirRepository.findAll();
     }
 
     @GetMapping("/sehirad/{id}")
-    public String getSehirAd(@PathVariable("id") long id)
-    {
+    public String getSehirAd(@PathVariable("id") long id) {
 
         Sehir sehir = getSehir(id);
         return sehir.getAd();
@@ -53,6 +47,17 @@ public class SehirController {
         sehirRepository.save(sehir);
     }
 
+
+    @GetMapping("/sehir/ad/{ad}")
+    public Sehir findSehirByAd(@PathVariable("ad") String ad) {
+
+
+        {
+            Sehir sehir = sehirRepository.findByAd(ad);
+            return sehir;
+
+        }
+    }
 
 
 }

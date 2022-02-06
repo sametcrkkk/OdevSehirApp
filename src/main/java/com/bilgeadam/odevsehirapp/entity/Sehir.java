@@ -19,8 +19,6 @@ public class Sehir {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long no;
     private String ad;
-    private long bolumNo;
-
 
 
 }
